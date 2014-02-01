@@ -32,12 +32,13 @@ describe('validation', function() {
       var txCache = {
         '2f9a4b88e382b72d0e3348a3c701950ab20efa9199cfd6dc69639ba91ec14901': Transaction.deserialize(prevOutBuffer)
       }
-      var unspentCache = {
+      var outputCache = {
+        // this caches output for whehter they have been spent or not
         // input.outpoint.txhash + input.outpoint.index : boolean(spent vs not spent)
         '2f9a4b88e382b72d0e3348a3c701950ab20efa9199cfd6dc69639ba91ec149010': false
       }
 
-      validation.tx(tx, txCache, unspentCache, function(err, result) {
+      validation.tx(tx, txCache, outputCache, function(err, result) {
         F(err, err)
         T(result, 'This transaction should be validated')
         done()
